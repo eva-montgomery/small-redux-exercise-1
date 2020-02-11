@@ -1,12 +1,79 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { 
+    createStore
+} from 'redux';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+
+{
+    movieCount: 0
+}
+
+const ADD_TO_MOVIE_COUNT = 'ADD_TO_MOVIE_COUNT'
+{
+    type: ADD_TO_MOVIE_COUNT 
+}
+
+{
+    burritosEaten: 0
+}
+
+const ADD_TO_BURRISTOS_EATEN = 'ADD_TO_BURRISTOS_EATEN'
+{
+    type: ADD_TO_BURRISTOS_EATEN
+}
+
+{
+    favoriteSong: "happy birthday"
+}
+
+
+const UPDATE_SONG = 'UPDATE_SONG'
+{
+    type: UPDATE_SONG,
+    payload: {
+        
+        songName: 'unhappy birthday',
+        updateDate: '2020-02-11'
+    }
+}
+
+{
+    coffees: 0
+}
+
+const INCREMENT_COFFEE_COUNT = 'INCREMENT_COFFEE_COUNT'
+{
+    type: INCREMENT_COFFEE_COUNT
+}
+
+
+const defaultLunchState = {
+    lunch: 'burrito'
+}
+ 
+const UPDATE_LUNCH_ITEM = 'UPDATE_LUNCH_ITEM'
+
+// example action that modifies lunch item
+// {
+//     type: UPDATE_LUNCH_ITEM,
+//     payload: {
+//         item_name: 'hot dog'
+//     }
+// }
+
+function lunch(state=defaultLunchState, action) {
+    const newState = { ...state };
+    switch (action, type) {
+        case UPDATE_LUNCH_ITEM:
+            newState.lunch = action.payload.itemNamr;
+            break;
+        default:
+            console.log('Did not match');
+            break;
+    }
+
+    return newState;
+}
+
+
+
