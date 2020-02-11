@@ -1,79 +1,91 @@
+  
+// {
+//     movieCount: 0
+// }
 
-import { 
-    createStore
-} from 'redux';
-
-
-{
-    movieCount: 0
-}
-
-const ADD_TO_MOVIE_COUNT = 'ADD_TO_MOVIE_COUNT'
-{
-    type: ADD_TO_MOVIE_COUNT 
-}
-
-{
-    burritosEaten: 0
-}
-
-const ADD_TO_BURRISTOS_EATEN = 'ADD_TO_BURRISTOS_EATEN'
-{
-    type: ADD_TO_BURRISTOS_EATEN
-}
-
-{
-    favoriteSong: "happy birthday"
-}
+// const ADD_TO_MOVIE_COUNT = 'ADD_TO_MOVIE_COUNT'
+// {
+//     type: ADD_TO_MOVIE_COUNT 
+// }
 
 
-const UPDATE_SONG = 'UPDATE_SONG'
-{
-    type: UPDATE_SONG,
-    payload: {
-        
-        songName: 'unhappy birthday',
-        updateDate: '2020-02-11'
-    }
-}
+// {
+//     burritosEaten: 0
+// }
 
-{
-    coffees: 0
-}
+// const ADD_TO_BURRITOS_EATEN = 'ADD_TO_BURRITOS_EATEN'
+// {
+//     type: ADD_TO_BURRITOS_EATEN
+// }
 
-const INCREMENT_COFFEE_COUNT = 'INCREMENT_COFFEE_COUNT'
-{
-    type: INCREMENT_COFFEE_COUNT
-}
 
+// {
+//     favoriteSong: "happy birthday"
+// }
+
+// const UPDATE_SONG = 'UPDATE_SONG'
+// {
+//     type: UPDATE_SONG,
+//     payload: {
+//         songName: 'unhappy birthday',
+//         updateDate: '2020-02-11'
+//     }
+// }
+
+// {
+//     ageOfHappyBirthdaySong: 99999999
+// }
+
+// {
+//     coffees: 0
+// }
+
+// const INCREMENT_COFFEE_COUNT = 'INCREMENT_COFFEE_COUNT';
+// {
+//     type: INCREMENT_COFFEE_COUNT
+// }
+
+import { createStore } from 'redux';
 
 const defaultLunchState = {
-    lunch: 'burrito'
+    lunch: "burrito"
 }
- 
+
 const UPDATE_LUNCH_ITEM = 'UPDATE_LUNCH_ITEM'
 
 // example action that modifies lunch item
 // {
 //     type: UPDATE_LUNCH_ITEM,
 //     payload: {
-//         item_name: 'hot dog'
+//         itemName: "hot dog"
 //     }
+// }
+
+// example action provided by redux
+// when it creates the store
+// {
+//     type: '@@INIT'
 // }
 
 function lunch(state=defaultLunchState, action) {
     const newState = { ...state };
-    switch (action, type) {
+    switch (action.type) {
         case UPDATE_LUNCH_ITEM:
-            newState.lunch = action.payload.itemNamr;
+            newState.lunch = action.payload.itemName;
             break;
         default:
             console.log('Did not match');
             break;
     }
-
     return newState;
 }
 
+const someOtherInitialState = {
+    lunch: 'coffee'
+};
 
-
+const store = createStore(  lunch, 
+                            someOtherInitialState,
+                            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+                        );
+window.store = store;
